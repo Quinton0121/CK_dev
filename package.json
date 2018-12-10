@@ -3,6 +3,13 @@
   "version": "0.0.0",
   "description": "NodejsConsoleApp1",
   "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Quinton0121/CK_dev.git"
+  },
   "author": {
     "name": "quint"
   }
