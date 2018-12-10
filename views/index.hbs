@@ -1,0 +1,31 @@
+﻿<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Final Prep</title>  
+
+  <link rel="stylesheet" href="css/styles.css?v=1.0">
+
+</head>
+
+<body>
+
+    {{>header}}
+    <form id="Form" action="/" method="POST" >
+        <h1>Log In</h1>
+        <p>Username</p>
+        <input id="usernameLogin" type="text" name="username" placeholder="username">
+        <p>Password</p>
+        <input id="passwordLogin" type="password" name="password" placeholder="password">
+        <input type="submit" value="Log In">
+        <br />
+        <input type="button" id="loginSwitch" class="switch" value="Don't have an account? Sign up" />
+    </form>
+    <br />
+    <h1>Hourly weather: {{photo}}</h1>
+
+    <script src="js/scripts.js"></script>
+</body>
+</html>
