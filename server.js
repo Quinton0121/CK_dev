@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express');
 const fs = require('fs');
 const hbs = require('hbs');
@@ -71,7 +72,7 @@ app.post('/', (req, res) => {
     //console.log('req', req);
     //console.log(req.body.username,req.body.password)
     const api = {
-        url: 'https://maps.googleapis.com/maps/api/geocode/json' + '?address=' + encodeURIComponent(req.body.username) + '&key=AIzaSyAwWRCcyyJ0qNnMErUtO4ci-tLYgKu2XJ4',
+        url: 'https://maps.googleapis.com/maps/api/geocode/json' + '?address=' + encodeURIComponent(req.body.username) + '&key=' + process.env.google_api,
         json: true
     }
     let pic = '';
@@ -91,7 +92,7 @@ app.post('/', (req, res) => {
 
     request(api).then((obj) => {
 
-        //console.log(obj.results[0].geometry.location)
+        //console.log(obj)//.results[0].geometry.location)
         callback2(obj.results[0].geometry.location,callback)
     }).catch(error => console.error(error))
 });
