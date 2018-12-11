@@ -13,59 +13,17 @@ hbs.registerPartials(__dirname + '/views/partials');
 app.set('view engine', 'hbs');
 app.use(express.static(__dirname + '/public'));
 
-hbs.registerHelper('getCurrentYear', () => {
-    return new Date().getFullYear();
-})
-
-hbs.registerHelper('message', (text) => {
-    return text.toUpperCase();
-})
 
 app.use(bodyParser.urlencoded({
     extended: true
 }))
 app.use(bodyParser.json())
 
-//app.use((request, response, next)=>{
-//    var time = new Date().toString();
-//    //console.log(`$(time): ${request.method} ${request.url}`);
-//    var log = `${time}: ${request.method} ${request.url}`;
-//    fs.appendFile('server.log', log + '\n', (error) => {
-//        if (error) {
-//            console.log('Unable to log message');
-//        }
-//    });
-//    console.log('right here')
-//    //next();
-//});
-
-//app.use((request, response, next) => {
-//    response.render('maintenance.hbs', {
-//        title: 'Error page',
-//        year: new Date()
-//    })
-//    next();
-//});
-
 
 app.get('/', (req, res) => {
-    //console.log('req', req);
-    //console.log(req.body.username)
-    const api = {
-        url: 'https://api.nasa.gov/neo/rest/v1/feed?start_date=2015-09-07&end_date=2015-09-08&api_key=DEMO_KEY',
-        json: true
-    };
-    let pic = '';
+    res.render('index.hbs');
 
-    const callback = (obj) => res.render('index.hbs', {
-        photo: obj.near_earth_objects["2015-09-08"][0].estimated_diameter.meters.estimated_diameter_min
-    });
-
-    request(api).then((obj) => {
-        
-        //console.log(obj.near_earth_objects["2015-09-08"][0].estimated_diameter.meters)
-        callback(obj)
-    }).catch(error => console.error(error))
+   
 });
 
 app.post('/', (req, res) => {
@@ -78,7 +36,7 @@ app.post('/', (req, res) => {
     let pic = '';
 
     const callback = (obj) => res.render('index.hbs', {
-        photo: obj
+        weather: obj
     });
 
     const callback2 = (obj,show) => {
@@ -97,13 +55,32 @@ app.post('/', (req, res) => {
     }).catch(error => console.error(error))
 });
 
-app.get('/info', (request, response) => {
-    response.render('about.hbs', {
-        title: 'About page',
-        year: new Date().getFullYear(),
-        greeting: 'Morning!',
-    });
+app.get('/gallery', (request, response) => {
+    response.render('gallery.hbs');
 });
+
+app.post('/gallery', (req, res) => {
+    
+    const api = {
+        url: 'https://jsonplaceholder.typicode.com/photos',
+        json: true
+    }
+
+    let no = req.body.gallery
+
+    const show_photo = (photo) => {
+        res.render('gallery.hbs', {
+            picture:photo[no].url
+        });
+    }
+
+    request(api).then((obj) => {
+
+        
+        show_photo(obj)
+    }).catch(error => console.error(error))
+});
+
 
 
 app.get('/404', (request, response) => {
@@ -111,6 +88,7 @@ app.get('/404', (request, response) => {
         error: 'Page not found'
     })
 });
+
 
 app.listen(port, () => {
     console.log(`Server is up on the port ${port}`);

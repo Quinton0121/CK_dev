@@ -1,0 +1,31 @@
+﻿<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>Final Prep</title>
+
+    <link rel="stylesheet" href="css/styles.css?v=1.0">
+
+</head>
+
+<body>
+
+    <a href="index.hbs">weather</a>
+    {{>header}}
+    <form id="Form" action="/gallery" method="POST">
+        
+        <p>Picture no</p>
+        <input id="gallery" type="text" name="gallery" placeholder="picture_name">
+        
+        <input type="submit" value="submit">
+       
+    </form>
+    <br />
+    <h1>gallery:</h1>
+    <img id="pic" src="{{picture}}" />
+
+    <script src="js/scripts.js"></script>
+</body>
+</html>

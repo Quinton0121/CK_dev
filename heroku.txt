@@ -1,0 +1,38 @@
+heroku create
+
+
+package.json:
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Quinton0121/CK_dev.git"
+  },
+
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "hbs": "^4.0.1",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2"
+  }
+
+git push heroku master 
+
+heroku config:set google_api=AIzaSyDb6Huv7au1fn6Ar_pD4zxA7dwq-OGnRYw
+
+heroku open
+
+
+github 
+
+git init
+
+git remote add origin clone-link
+
+git add *
+git commit -m ""
+git push origin master 
