@@ -33,10 +33,11 @@ app.post('/', (req, res) => {
         url: 'https://maps.googleapis.com/maps/api/geocode/json' + '?address=' + encodeURIComponent(req.body.username) + '&key=' + process.env.google_api,
         json: true
     }
-    let pic = '';
+    
 
     const callback = (obj) => res.render('index.hbs', {
-        weather: obj
+        weather: obj,
+        photo: 'https://cdn3.iconfinder.com/data/icons/bebreezee-weather-symbols/561/icon-weather-storm-512.png'
     });
 
     const callback2 = (obj,show) => {
