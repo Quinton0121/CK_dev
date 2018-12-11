@@ -21,9 +21,7 @@ app.use(bodyParser.json())
 
 
 app.get('/', (req, res) => {
-    res.render('index.hbs');
-
-   
+    res.render('index.hbs'); 
 });
 
 app.post('/', (req, res) => {
@@ -37,7 +35,7 @@ app.post('/', (req, res) => {
 
     const callback = (obj) => res.render('index.hbs', {
         weather: obj,
-        photo: 'https://cdn3.iconfinder.com/data/icons/bebreezee-weather-symbols/561/icon-weather-storm-512.png'
+        photo: 'sunny.png'
     });
 
     const callback2 = (obj,show) => {
@@ -84,11 +82,6 @@ app.post('/gallery', (req, res) => {
 
 
 
-app.get('/404', (request, response) => {
-    response.send({
-        error: 'Page not found'
-    })
-});
 
 
 app.listen(port, () => {
